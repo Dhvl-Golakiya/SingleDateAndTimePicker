@@ -310,6 +310,28 @@ public class SingleDateAndTimePicker extends LinearLayout {
         updatePicker();
     }
 
+    public void showDateAndTimePicker() {
+        this.displayDayOfMonths = false;
+        this.displayMonth = false;
+        this.displayYears = false;
+        this.displayDays = true;
+        this.displayHours = true;
+        this.displayMinutes = true;
+        updateViews();
+        updatePicker();
+    }
+
+    public void showTimePicker() {
+        this.displayDayOfMonths = false;
+        this.displayMonth = false;
+        this.displayYears = false;
+        this.displayDays = false;
+        this.displayHours = true;
+        this.displayMinutes = true;
+        updateViews();
+        updatePicker();
+    }
+
     public boolean isAmPm() {
         return isAmPm;
     }
