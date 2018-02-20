@@ -1,12 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion project.sdk
-    buildToolsVersion project.buildTools
+    compileSdkVersion 26
 
     defaultConfig {
-        minSdkVersion project.minSdk
-        targetSdkVersion project.sdk
+        minSdkVersion 15
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -16,7 +15,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:' + project.supportVersion
+    compile 'com.android.support:appcompat-v7:26.1.0'
 }
 
 ext {
@@ -33,7 +32,7 @@ ext {
     siteUrl = 'https://github.com/florent37/SingleDateAndTimePicker'
     gitUrl = 'https://github.com/florent37/SingleDateAndTimePicker.git'
 
-    libraryVersion = rootProject.ext.libraryVersion
+    libraryVersion = "1.2.2"
 
     developerId = 'florent37'
     developerName = 'Florent Champigny'
@@ -42,9 +41,4 @@ ext {
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
-}
-
-if (project.rootProject.file('local.properties').exists()) {
-    apply from: rootProject.file('gradle/install-v1.gradle')
-    apply from: rootProject.file('gradle/bintray-android-v1.gradle')
 }

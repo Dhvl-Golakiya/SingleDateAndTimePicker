@@ -42,5 +42,6 @@
         <attr name="picker_displayDays" format="boolean"/>
         <attr name="picker_displayMinutes" format="boolean"/>
         <attr name="picker_displayHours" format="boolean"/>
+        <attr name="picker_displayDayOfMonth" format="boolean"/>
     </declare-styleable>
 </resources>
