@@ -13,8 +13,8 @@ import java.util.List;
  */
 
 public class WheelYearPicker extends WheelPicker {
-    public static final int MIN_YEAR = 2000;
-    public static final int MAX_YEAR = 2020;
+    public static final int MIN_YEAR = 1900;
+    public static final int MAX_YEAR = 2100;
 
     private int defaultYear;
 
