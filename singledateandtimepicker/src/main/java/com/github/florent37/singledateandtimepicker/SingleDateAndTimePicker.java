@@ -110,6 +110,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         monthPicker.setOnMonthSelectedListener(new WheelMonthsPicker.OnMonthSelectedListener() {
             @Override
             public void onMonthSelected(WheelMonthsPicker picker, int position, int months) {
+                updateDate();
                 updateListener();
                 checkMinMaxDate(picker);
             }
@@ -118,6 +119,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         yearsPicker.setOnYearSelectedListener(new WheelYearPicker.OnYearSelectedListener() {
             @Override
             public void onYearSelected(WheelYearPicker picker, int position, int years) {
+                updateDate();
                 updateListener();
                 checkMinMaxDate(picker);
             }
@@ -126,6 +128,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         dayOfMonthPicker.setOnDayOfMonthSelectedListener(new WheelDayOfMonthPicker.OnDayOfMonthSelectedListener() {
             @Override
             public void onDayOfMonthSelected(WheelDayOfMonthPicker picker, int position, int dayOfMonth) {
+                updateDate();
                 updateListener();
                 checkMinMaxDate(picker);
             }
@@ -296,6 +299,35 @@ public class SingleDateAndTimePicker extends LinearLayout {
     public void setDayFormatter(SimpleDateFormat simpleDateFormat) {
         if (simpleDateFormat != null) {
             this.daysPicker.setDayFormatter(simpleDateFormat);
+        }
+    }
+
+    void updateDate() {
+        int day = dayOfMonthPicker.getCurrentDayOfMonth();
+        int month = monthPicker.getCurrentMonth();
+        int year = yearsPicker.getCurrentYear();
+        if (month < 7) {
+            if (month == 1) {
+                if (day > 28) {
+                    if (year % 4 == 0) {
+                        dayOfMonthPicker.scrollTo(28);
+                    }
+                    else {
+                        dayOfMonthPicker.scrollTo(27);
+                    }
+                }
+            } else if (month % 2 != 0) {
+                if (day > 30) {
+                        dayOfMonthPicker.scrollTo(29);
+                }
+            }
+        }
+        else {
+            if (month % 2 == 0) {
+                if (day > 30) {
+                    dayOfMonthPicker.scrollTo(29);
+                }
+            }
         }
     }
 
