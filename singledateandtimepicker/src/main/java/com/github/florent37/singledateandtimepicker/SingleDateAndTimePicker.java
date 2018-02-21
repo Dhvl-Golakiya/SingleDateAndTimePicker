@@ -144,13 +144,13 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
         minutesPicker.setListener(new WheelMinutePicker.Listener() {
             @Override
-            public void onSelected(WheelMinutePicker picker, int position, Integer value) {
+            public void onSelected(WheelMinutePicker picker, int position, String value) {
                 updateListener();
                 checkMinMaxDate(picker);
             }
 
             @Override
-            public void onCurrentScrolled(WheelMinutePicker picker, int position, Integer value) {
+            public void onCurrentScrolled(WheelMinutePicker picker, int position, String value) {
 
             }
 

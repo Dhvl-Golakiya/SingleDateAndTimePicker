@@ -69,6 +69,7 @@ public class WheelMinutePicker extends WheelPicker<String> {
         return convertItemToMinute(adapter.getItem(getCurrentItemPosition()));
     }
 
-    public interface Listener extends WheelPicker.Listener<WheelMinutePicker, Integer> {
+    public interface Listener extends WheelPicker.Listener<WheelMinutePicker, String>{
+
     }
 }
