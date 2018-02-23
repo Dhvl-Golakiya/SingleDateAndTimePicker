@@ -561,6 +561,21 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     public void setDefaultDate( Date date ) {
         this.defaultDate = date;
+        this.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                    if (displayDayOfMonths) {
+                        yearsPicker.scrollTo(yearsPicker.findIndexOfDate(date));
+                        monthPicker.scrollTo(monthPicker.findIndexOfDate(date));
+                        dayOfMonthPicker.scrollTo(dayOfMonthPicker.findIndexOfDate(date));
+                    } else {
+                        amPmPicker.scrollTo(amPmPicker.findIndexOfDate(date));
+                        daysPicker.scrollTo(daysPicker.findIndexOfDate(date));
+                        minutesPicker.scrollTo(minutesPicker.findIndexOfDate(date));
+                        hoursPicker.scrollTo(hoursPicker.findIndexOfDate(date));
+                    }
+            }
+        }, DELAY_BEFORE_CHECK_PAST);
     }
 
     public void selectDate(Calendar calendar) {
