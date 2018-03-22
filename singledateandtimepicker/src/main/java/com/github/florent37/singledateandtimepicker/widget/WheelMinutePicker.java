@@ -14,6 +14,7 @@ public class WheelMinutePicker extends WheelPicker<String> {
     public static final int STEP_MINUTES_DEFAULT = 1;
 
     private int stepMinutes = STEP_MINUTES_DEFAULT;
+    private boolean isForRangePicker = false;
 
     public WheelMinutePicker(Context context) {
         super(context);
@@ -58,6 +59,28 @@ public class WheelMinutePicker extends WheelPicker<String> {
         if (stepMinutes < 60 && stepMinutes > 0) {
             this.stepMinutes = stepMinutes;
             initAdapter();
+        }
+    }
+
+    public void setIsForRangePicker(boolean isForRangePicker) {
+        this.isForRangePicker = isForRangePicker;
+        if (this.isForRangePicker) {
+            setDefault("0");
+        }
+    }
+
+    @Override
+    public void setDefault(String defaultValue) {
+        try {
+            if (this.isForRangePicker) {
+                super.setDefault(getFormattedValue(0));
+                return;
+            }
+            int minute = Integer.parseInt(defaultValue);
+
+            super.setDefault(getFormattedValue(minute));
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

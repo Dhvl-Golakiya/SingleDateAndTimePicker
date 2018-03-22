@@ -16,6 +16,7 @@ public class WheelHourPicker extends WheelPicker<String> {
     public static final int MAX_HOUR_AM_PM = 12;
     public static final int STEP_HOURS_DEFAULT = 1;
 
+    private boolean isForRangePicker = false;
     private int minHour = MIN_HOUR_DEFAULT;
     private int maxHour = MAX_HOUR_DEFAULT;
     private int hoursStep = STEP_HOURS_DEFAULT;
@@ -72,9 +73,20 @@ public class WheelHourPicker extends WheelPicker<String> {
         return String.format(getCurrentLocale(), FORMAT, valueItem);
     }
 
+    public void setIsForRangePicker(boolean isForRangePicker) {
+        this.isForRangePicker = isForRangePicker;
+        if (this.isForRangePicker) {
+            setDefault("0");
+        }
+    }
+
     @Override
     public void setDefault(String defaultValue) {
         try {
+            if (this.isForRangePicker) {
+                super.setDefault(getFormattedValue(0));
+                return;
+            }
             int hour = Integer.parseInt(defaultValue);
             if (isAmPm && hour >= MAX_HOUR_AM_PM) {
                 hour -= MAX_HOUR_AM_PM;
