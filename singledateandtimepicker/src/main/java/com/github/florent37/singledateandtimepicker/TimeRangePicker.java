@@ -158,7 +158,9 @@ public class TimeRangePicker extends LinearLayout {
                 wheelPicker.setItemTextSize(textSize);
                 wheelPicker.setVisibleItemCount(visibleItemCount);
                 wheelPicker.setCurved(isCurved);
-                wheelPicker.setCyclic(isCyclic);
+                if (wheelPicker != hoursPicker) {
+                    wheelPicker.setCyclic(isCyclic);
+                }
             }
         }
 
