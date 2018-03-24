@@ -15,6 +15,24 @@
         android:orientation="horizontal"
         >
 
+        <com.github.florent37.singledateandtimepicker.widget.WheelDayRangePicker
+            android:id="@+id/dayRangePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            app:wheel_atmospheric="true"
+            app:wheel_item_align="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/range_day"
+            android:textSize="16sp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp" />
+
         <com.github.florent37.singledateandtimepicker.widget.WheelHourPicker
             android:id="@+id/hoursRangePicker"
             android:layout_width="wrap_content"

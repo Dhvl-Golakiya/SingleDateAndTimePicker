@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelDayOfMonthPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelDayPicker;
+import com.github.florent37.singledateandtimepicker.widget.WheelDayRangePicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelHourPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelMonthsPicker;
@@ -40,6 +41,8 @@ public class TimeRangePicker extends LinearLayout {
 
     private WheelMinutePicker minutesPicker;
     private WheelHourPicker hoursPicker;
+    private WheelDayRangePicker dayRangePicker;
+
 
     private TimeRangePicker.Listener listener;
 
@@ -70,6 +73,7 @@ public class TimeRangePicker extends LinearLayout {
 
         minutesPicker = (WheelMinutePicker) findViewById(R.id.minutesRangePicker);
         hoursPicker = (WheelHourPicker) findViewById(R.id.hoursRangePicker);
+        dayRangePicker = (WheelDayRangePicker) findViewById(R.id.dayRangePicker);
         dtSelector = findViewById(R.id.dtRangeSelector);
 
         final ViewGroup.LayoutParams dtSelectorLayoutParams = dtSelector.getLayoutParams();
@@ -80,6 +84,23 @@ public class TimeRangePicker extends LinearLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+
+        dayRangePicker.setListener(new WheelDayRangePicker.Listener() {
+            @Override
+            public void onSelected(WheelDayRangePicker picker, int position, String value) {
+                updateListener();
+            }
+
+            @Override
+            public void onCurrentScrolled(WheelDayRangePicker picker, int position, String value) {
+
+            }
+
+            @Override
+            public void onFinishedLoop(WheelDayRangePicker picker) {
+
+            }
+        });
 
         minutesPicker.setListener(new WheelMinutePicker.Listener() {
             @Override
@@ -152,7 +173,7 @@ public class TimeRangePicker extends LinearLayout {
 
     private void updatePicker() {
         if ( minutesPicker != null && hoursPicker != null) {
-            for (WheelPicker wheelPicker : Arrays.asList(minutesPicker, hoursPicker)) {
+            for (WheelPicker wheelPicker : Arrays.asList(minutesPicker, hoursPicker, dayRangePicker)) {
                 wheelPicker.setItemTextColor(textColor);
                 wheelPicker.setSelectedItemTextColor(selectedTextColor);
                 wheelPicker.setItemTextSize(textSize);
@@ -186,9 +207,8 @@ public class TimeRangePicker extends LinearLayout {
     }
 
     private void updateListener() {
-
         if (listener != null) {
-            listener.onTimeChanged(String.valueOf(hoursPicker.getCurrentHour()), String.valueOf(minutesPicker.getCurrentMinute()));
+            listener.onTimeChanged(String.valueOf(dayRangePicker.getCurrentDay()), String.valueOf(hoursPicker.getCurrentHour()), String.valueOf(minutesPicker.getCurrentMinute()));
         }
     }
 
@@ -212,7 +232,7 @@ public class TimeRangePicker extends LinearLayout {
     }
 
     public interface Listener {
-        void onTimeChanged(String hours, String minutes);
+        void onTimeChanged(String days, String hours, String minutes);
     }
 }
 
