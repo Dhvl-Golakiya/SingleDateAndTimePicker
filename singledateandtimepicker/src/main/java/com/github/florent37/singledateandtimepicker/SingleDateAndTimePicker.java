@@ -84,7 +84,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     public SingleDateAndTimePicker(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        init(context, attrs, defStyleAttr);
         inflate(context, R.layout.single_day_picker, this);
 
         isAmPm = !(DateFormat.is24HourFormat(context));
@@ -101,6 +101,14 @@ public class SingleDateAndTimePicker extends LinearLayout {
         final ViewGroup.LayoutParams dtSelectorLayoutParams = dtSelector.getLayoutParams();
         dtSelectorLayoutParams.height = selectorHeight;
         dtSelector.setLayoutParams(dtSelectorLayoutParams);
+         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.pickerLayout);
+         if (defStyleAttr == 0) {
+             linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_button_background));
+             dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_default_selected_text_color));
+         } else {
+             linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_black_background));
+             dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_black_selector_color));
+         }
     }
 
     @Override
@@ -612,15 +620,22 @@ public class SingleDateAndTimePicker extends LinearLayout {
         return mustBeOnFuture;
     }
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SingleDateAndTimePicker);
 
         final Resources resources = getResources();
         todayText = a.getString(R.styleable.SingleDateAndTimePicker_picker_todayText);
-        textColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor,
-                ContextCompat.getColor(context, R.color.picker_default_text_color));
-        selectedTextColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor,
-                ContextCompat.getColor(context, R.color.picker_default_selected_text_color));
+        if (defStyleAttr == 0) {
+            textColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor,
+                    ContextCompat.getColor(context, R.color.picker_default_text_color));
+            selectedTextColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor,
+                    ContextCompat.getColor(context, R.color.picker_default_selected_text_color));
+        } else {
+            textColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor,
+                    ContextCompat.getColor(context, R.color.picker_black_text_color));
+            selectedTextColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor,
+                    ContextCompat.getColor(context, R.color.picker_black_selected_text_color));
+        }
         selectorColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectorColor,
                 ContextCompat.getColor(context, R.color.picker_default_selector_color));
         selectorHeight = a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_selectorHeight, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight));
