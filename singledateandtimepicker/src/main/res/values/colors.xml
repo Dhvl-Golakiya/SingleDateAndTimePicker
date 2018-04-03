@@ -8,8 +8,8 @@
     <color name="picker_default_selected_text_color">@android:color/black</color>
     <color name="picker_default_selector_color">#646464</color>
 
-    <color name="picker_black_background">#021421</color>
-    <color name="picker_black_selector_color">#1F2F3B</color>
+    <color name="picker_black_background">#031422</color>
+    <color name="picker_black_selector_color">#202F3C</color>
     <color name="picker_black_text_color">@android:color/white</color>
     <color name="picker_black_selected_text_color">@android:color/white</color>
 </resources>
