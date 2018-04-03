@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelDayOfMonthPicker;
@@ -68,7 +69,7 @@ public class TimeRangePicker extends LinearLayout {
 
     public TimeRangePicker(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        init(context, attrs, defStyleAttr);
         inflate(context, R.layout.time_range_picker, this);
 
         minutesPicker = (WheelMinutePicker) findViewById(R.id.minutesRangePicker);
@@ -79,6 +80,24 @@ public class TimeRangePicker extends LinearLayout {
         final ViewGroup.LayoutParams dtSelectorLayoutParams = dtSelector.getLayoutParams();
         dtSelectorLayoutParams.height = selectorHeight;
         dtSelector.setLayoutParams(dtSelectorLayoutParams);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.pickerLayout);
+        TextView daysTextView = (TextView) findViewById(R.id.daysTextView);
+        TextView hoursTextView = (TextView) findViewById(R.id.hoursTextView);
+        TextView minutesTextView = (TextView) findViewById(R.id.minutesTextView);
+
+        if (defStyleAttr == 0) {
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_button_background));
+            dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_default_selected_text_color));
+            daysTextView.setTextColor(getResources().getColor(R.color.picker_default_text_color));
+            hoursTextView.setTextColor(getResources().getColor(R.color.picker_default_text_color));
+            minutesTextView.setTextColor(getResources().getColor(R.color.picker_default_text_color));
+        } else {
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_black_background));
+            dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_black_selector_color));
+            daysTextView.setTextColor(getResources().getColor(R.color.picker_black_text_color));
+            hoursTextView.setTextColor(getResources().getColor(R.color.picker_black_text_color));
+            minutesTextView.setTextColor(getResources().getColor(R.color.picker_black_text_color));
+        }
     }
 
     @Override
@@ -212,14 +231,21 @@ public class TimeRangePicker extends LinearLayout {
         }
     }
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SingleDateAndTimePicker);
 
         final Resources resources = getResources();
-        textColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor,
-                ContextCompat.getColor(context, R.color.picker_default_text_color));
-        selectedTextColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor,
-                ContextCompat.getColor(context, R.color.picker_default_selected_text_color));
+        if (defStyleAttr == 0) {
+            textColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor,
+                    ContextCompat.getColor(context, R.color.picker_default_text_color));
+            selectedTextColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor,
+                    ContextCompat.getColor(context, R.color.picker_default_selected_text_color));
+        } else {
+            textColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor,
+                    ContextCompat.getColor(context, R.color.picker_black_text_color));
+            selectedTextColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor,
+                    ContextCompat.getColor(context, R.color.picker_black_selected_text_color));
+        }
         selectorColor = a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectorColor,
                 ContextCompat.getColor(context, R.color.picker_default_selector_color));
         selectorHeight = a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_selectorHeight, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight));

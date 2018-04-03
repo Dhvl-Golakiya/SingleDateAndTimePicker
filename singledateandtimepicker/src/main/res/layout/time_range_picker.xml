@@ -8,6 +8,7 @@
     >
 
     <LinearLayout
+        android:id="@+id/pickerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
@@ -26,6 +27,7 @@
             />
 
         <TextView
+            android:id="@+id/daysTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/range_day"
@@ -42,7 +44,9 @@
             app:wheel_atmospheric="true"
             app:wheel_item_align="center"
             />
+
         <TextView
+            android:id="@+id/hoursTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/range_hour"
@@ -60,6 +64,7 @@
             android:layout_marginRight="5dp" />
 
         <TextView
+            android:id="@+id/minutesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/range_minute"
