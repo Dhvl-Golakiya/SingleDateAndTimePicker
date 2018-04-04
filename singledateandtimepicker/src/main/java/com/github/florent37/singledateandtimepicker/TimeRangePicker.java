@@ -3,6 +3,7 @@ package com.github.florent37.singledateandtimepicker;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
@@ -84,6 +85,11 @@ public class TimeRangePicker extends LinearLayout {
         TextView daysTextView = (TextView) findViewById(R.id.daysTextView);
         TextView hoursTextView = (TextView) findViewById(R.id.hoursTextView);
         TextView minutesTextView = (TextView) findViewById(R.id.minutesTextView);
+
+        Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "sf_pro_text_medium.otf");
+        daysTextView.setTypeface(typeface);
+        hoursTextView.setTypeface(typeface);
+        minutesTextView.setTypeface(typeface);
 
         if (defStyleAttr == 0) {
             linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_button_background));

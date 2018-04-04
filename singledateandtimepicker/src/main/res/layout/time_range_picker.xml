@@ -20,10 +20,11 @@
             android:id="@+id/dayRangePicker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
             app:wheel_atmospheric="true"
             app:wheel_item_align="center"
+            android:visibility="gone"
             />
 
         <TextView
@@ -31,16 +32,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/range_day"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp" />
+            android:layout_marginRight="30dp"
+            android:visibility="gone"
+            />
 
         <com.github.florent37.singledateandtimepicker.widget.WheelHourPicker
             android:id="@+id/hoursRangePicker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
             app:wheel_atmospheric="true"
             app:wheel_item_align="center"
             />
@@ -50,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/range_hour"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp" />
 
@@ -60,15 +63,15 @@
             android:layout_height="match_parent"
             app:wheel_atmospheric="true"
             app:wheel_item_align="center"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp" />
 
         <TextView
             android:id="@+id/minutesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/range_minute"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp" />
 

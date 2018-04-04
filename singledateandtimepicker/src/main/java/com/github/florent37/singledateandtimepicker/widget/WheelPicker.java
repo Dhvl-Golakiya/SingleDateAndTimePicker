@@ -16,6 +16,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -132,7 +133,7 @@ public abstract class WheelPicker<V> extends View {
 
     public WheelPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
-
+        
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WheelPicker);
 
         mItemTextSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_text_size,
@@ -778,6 +779,8 @@ public abstract class WheelPicker<V> extends View {
             requestLayout();
             invalidate();
         }
+        Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "sf_pro_text_regular.otf");
+        paint.setTypeface(typeface);
     }
 
     public int getItemSpace() {
