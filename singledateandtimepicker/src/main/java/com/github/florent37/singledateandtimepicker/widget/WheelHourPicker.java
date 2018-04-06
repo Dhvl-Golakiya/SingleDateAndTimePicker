@@ -98,6 +98,10 @@ public class WheelHourPicker extends WheelPicker<String> {
         }
     }
 
+    public void resetHour() {
+        super.setDefault(getFormattedValue(0));
+    }
+
     public void setIsAmPm(boolean isAmPm) {
         this.isAmPm = isAmPm;
         if (isAmPm) {

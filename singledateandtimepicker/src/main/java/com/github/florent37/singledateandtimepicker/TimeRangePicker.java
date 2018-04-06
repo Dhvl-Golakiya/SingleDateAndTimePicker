@@ -196,6 +196,11 @@ public class TimeRangePicker extends LinearLayout {
         updatePicker();
     }
 
+    public void resetTime() {
+        hoursPicker.resetHour();
+        minutesPicker.resetMinute();
+    }
+
     private void updatePicker() {
         if ( minutesPicker != null && hoursPicker != null) {
             for (WheelPicker wheelPicker : Arrays.asList(minutesPicker, hoursPicker, dayRangePicker)) {

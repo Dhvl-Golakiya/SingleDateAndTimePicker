@@ -84,6 +84,10 @@ public class WheelMinutePicker extends WheelPicker<String> {
         }
     }
 
+    public void resetMinute() {
+        super.setDefault(getFormattedValue(0));
+    }
+
     private int convertItemToMinute(Object item) {
         return Integer.valueOf(String.valueOf(item));
     }
