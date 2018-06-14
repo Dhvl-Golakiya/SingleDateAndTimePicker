@@ -73,6 +73,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     private boolean isAmPm;
     private int selectorHeight;
+    private int stepMinutes = WheelMinutePicker.STEP_MINUTES_DEFAULT;
 
     public SingleDateAndTimePicker(Context context) {
         this(context, null);
@@ -101,14 +102,14 @@ public class SingleDateAndTimePicker extends LinearLayout {
         final ViewGroup.LayoutParams dtSelectorLayoutParams = dtSelector.getLayoutParams();
         dtSelectorLayoutParams.height = selectorHeight;
         dtSelector.setLayoutParams(dtSelectorLayoutParams);
-         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.pickerLayout);
-         if (defStyleAttr == 0) {
-             linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_button_background));
-             dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_default_selected_text_color));
-         } else {
-             linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_black_background));
-             dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_black_selector_color));
-         }
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.pickerLayout);
+        if (defStyleAttr == 0) {
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_button_background));
+            dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_default_selected_text_color));
+        } else {
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.picker_black_background));
+            dtSelector.setBackgroundColor(getResources().getColor(R.color.picker_black_selector_color));
+        }
     }
 
     @Override
@@ -164,6 +165,9 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
             @Override
             public void onFinishedLoop(WheelMinutePicker picker) {
+                if (stepMinutes > 10) {
+                    return;
+                }
                 hoursPicker.scrollTo(hoursPicker.getCurrentItemPosition() + 1);
             }
         });
@@ -326,7 +330,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
                 }
             } else if (month % 2 != 0) {
                 if (day > 30) {
-                        dayOfMonthPicker.scrollTo(29);
+                    dayOfMonthPicker.scrollTo(29);
                 }
             }
         }
@@ -401,7 +405,11 @@ public class SingleDateAndTimePicker extends LinearLayout {
                 wheelPicker.setVisibleItemCount(visibleItemCount);
                 wheelPicker.setCurved(isCurved);
                 if (wheelPicker != amPmPicker) {
-                    wheelPicker.setCyclic(isCyclic);
+                    if (wheelPicker == minutesPicker && stepMinutes > 10) {
+                        wheelPicker.setCyclic(false);
+                    } else {
+                        wheelPicker.setCyclic(isCyclic);
+                    }
                 }
             }
         }
@@ -561,6 +569,10 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     public void setStepMinutes(int minutesStep) {
         minutesPicker.setStepMinutes(minutesStep);
+        this.stepMinutes = minutesStep;
+        if (minutesStep > 10) {
+            minutesPicker.setCyclic(false);
+        }
     }
 
     public void setHoursStep(int hoursStep) {

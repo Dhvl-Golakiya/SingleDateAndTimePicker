@@ -19,6 +19,7 @@ import com.github.florent37.singledateandtimepicker.widget.WheelDayPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelDayRangePicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelHourPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker;
+import com.github.florent37.singledateandtimepicker.widget.WheelMinuteRagnePicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelMonthsPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelYearPicker;
@@ -58,6 +59,7 @@ public class TimeRangePicker extends LinearLayout {
     private View dtSelector;
 
     private int selectorHeight;
+    private int stepMinutes = WheelMinutePicker.STEP_MINUTES_DEFAULT;
 
 
     public TimeRangePicker(Context context) {
@@ -140,6 +142,9 @@ public class TimeRangePicker extends LinearLayout {
 
             @Override
             public void onFinishedLoop(WheelMinutePicker picker) {
+                if (stepMinutes > 10) {
+                    return;
+                }
                 hoursPicker.scrollTo(hoursPicker.getCurrentItemPosition() + 1);
             }
         });
@@ -209,9 +214,6 @@ public class TimeRangePicker extends LinearLayout {
                 wheelPicker.setItemTextSize(textSize);
                 wheelPicker.setVisibleItemCount(visibleItemCount);
                 wheelPicker.setCurved(isCurved);
-                if (wheelPicker != hoursPicker) {
-                    wheelPicker.setCyclic(isCyclic);
-                }
             }
         }
 
@@ -223,10 +225,19 @@ public class TimeRangePicker extends LinearLayout {
 
         if (minutesPicker != null) {
             minutesPicker.setIsForRangePicker(true);
-            minutesPicker.setStepMinutes(1);
+            minutesPicker.setStepMinutes(stepMinutes);
         }
 
     }
+
+    public void setStepMinutes(int minutesStep) {
+        minutesPicker.setStepMinutes(minutesStep);
+        this.stepMinutes = minutesStep;
+        if (minutesStep > 10) {
+            minutesPicker.setCyclic(false);
+        }
+    }
+
 
     private void updateViews() {
         dtSelector.setBackgroundColor(selectorColor);
