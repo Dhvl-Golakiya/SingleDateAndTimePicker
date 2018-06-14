@@ -4,30 +4,19 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker;
-import com.github.florent37.singledateandtimepicker.widget.WheelDayOfMonthPicker;
-import com.github.florent37.singledateandtimepicker.widget.WheelDayPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelDayRangePicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelHourPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker;
-import com.github.florent37.singledateandtimepicker.widget.WheelMinuteRagnePicker;
-import com.github.florent37.singledateandtimepicker.widget.WheelMonthsPicker;
 import com.github.florent37.singledateandtimepicker.widget.WheelPicker;
-import com.github.florent37.singledateandtimepicker.widget.WheelYearPicker;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by dhvlsimac on 22/03/18.
